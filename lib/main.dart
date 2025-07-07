@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mqtt_palette_esp32/ui_components/mqtt_panel.dart';
 
 import 'buttons_panel.dart';
 import 'color_bloc.dart';
 import 'icon_panel.dart';
+import 'ui_components/control_panel.dart';
 
 // The main app widget
 void main() {
@@ -24,6 +26,8 @@ class PaletteApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
+                //const ControlPanel(),
+                //const MQTTPanel(),
                 ButtonsPanel(),
                 SizedBox(height: 16),
                 IconPanel(),
