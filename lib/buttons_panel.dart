@@ -13,6 +13,10 @@ class ButtonsPanel extends StatelessWidget {
     Colors.orange,
     Colors.cyan,
     Colors.pink,
+    // Colors.teal,
+    // Colors.lime,
+    // Colors.amber,
+    // Colors.indigo,
   ];
 
   ButtonsPanel({super.key});
