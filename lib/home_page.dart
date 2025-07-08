@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'buttons_panel.dart';
-import 'icon_panel.dart';
+import 'ui_components/buttons_panel.dart';
+import 'ui_components/icon_panel.dart';
 import 'ui_blocks/app_bloc.dart';
 import 'ui_components/control_panel.dart';
 import 'ui_components/mqtt_panel.dart';

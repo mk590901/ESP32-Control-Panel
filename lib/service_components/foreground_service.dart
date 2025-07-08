@@ -260,7 +260,7 @@ EMQX: _server = 'broker.emqx.io'
         _deviceId = receivedData;
         print ('DEVICE->$_deviceId');
       }
-      if (command == 'color') {
+      if (command == 'color' || command == 'stop') {
         String jsonString = receivedData;
         final builder = MqttClientPayloadBuilder();
         builder.addString(jsonString);

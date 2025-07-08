@@ -4,15 +4,12 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'buttons_panel.dart';
 import 'ui_blocks/color_bloc.dart';
 import 'gui_adapter/service_adapter.dart';
 import 'home_page.dart';
-import 'icon_panel.dart';
 import 'service_components/foreground_service.dart';
 import 'ui_blocks/app_bloc.dart';
 import 'ui_blocks/mqtt_bloc.dart';
-import 'ui_components/control_panel.dart';
 
 // The main app widget
 void main() async {

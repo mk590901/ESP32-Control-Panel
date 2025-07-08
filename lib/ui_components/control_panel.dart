@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../gui_adapter/service_adapter.dart';
 import '../ui_blocks/app_bloc.dart';
+import '../ui_blocks/mqtt_bloc.dart';
+import '../utils.dart';
 //import '../ui_blocks/items_bloc.dart';
 
 class ControlPanel extends StatelessWidget {
@@ -34,9 +36,7 @@ class ControlPanel extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      //context.read<AppBloc>().add(ToggleRunningEvent());
                       if (state.isRunning) {
-                        //context.read<ItemsBloc>().add(ClearItemsEvent());
                         context.read<AppBloc>().add(StopService());
                         ServiceAdapter.instance()?.stopTimer();
                         ServiceAdapter.instance()?.mqttUnsubscribe(); //  via MqttBloc
@@ -49,21 +49,32 @@ class ControlPanel extends StatelessWidget {
                     child: Text(state.isRunning ? 'Stop' : 'Start'),
                   ),
 
+
+                  ElevatedButton(
+                    onPressed: () {
+                      if (state.isRunning) {
+                        if (context.read<MqttBloc>().state.isConnected
+                        &&  context.read<MqttBloc>().state.isSubscribed) {
+                          ServiceAdapter.instance()?.stopEsp32();
+                        }
+                        else {
+                          showToast(context, "MQTT problems");
+                        }
+                        // context.read<AppBloc>().add(StopService());
+                        // ServiceAdapter.instance()?.stopTimer();
+                        // ServiceAdapter.instance()?.mqttUnsubscribe(); //  via MqttBloc
+                        // ServiceAdapter.instance()?.mqttDisconnect();
+                      }
+                      else {
+                        showToast(context, "Service isn't run");
+                      //  context.read<AppBloc>().add(StartService());
+                      }
+                    },
+                    child: Text('Stop ESP32-S3', ),
+                  ),
+
+
                   Text('# ${state.counter}'),
-
-                  // Row(
-                  //   children: [
-                  //     Text(state.isServer ? 'Server' : 'Client'),
-                  //     const SizedBox(width: 8),
-                  //     Switch(
-                  //       value: state.isServer,
-                  //       onChanged: (value) {
-                  //         context.read<AppBloc>().add(ToggleModeEvent());
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
-
 
                 ],
               ),

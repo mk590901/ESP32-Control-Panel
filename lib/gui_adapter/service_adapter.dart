@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'dart:async';
 import 'package:synchronized/synchronized.dart';
 
+import '../command_model.dart';
 import '../ui_blocks/color_bloc.dart';
 import '../color_model.dart';
 import '../ui_blocks/app_bloc.dart';
@@ -371,5 +375,11 @@ class ServiceAdapter {
     print ('******* setColor [${color.r},${color.g},${color.b}] *******');
     _colorBloc?.add(ChangeColorEvent(flutterColor));
 
+  }
+
+  void stopEsp32() {
+    final Command command = Command(cmd: "stop");
+    String jsonString = jsonEncode(command.toJson());
+    FlutterForegroundTask.sendData({'command': 'stop', 'data': jsonString});
   }
 }
