@@ -26,7 +26,28 @@ class HomePage extends StatelessWidget {
         // For 'ignore' we do nothing, the dialog just closes
       },
       child: Scaffold(
-        appBar: AppBar(title: Text('Colorful Icons App')),
+        //appBar: AppBar(title: Text('Colorful Icons App')),
+        appBar: AppBar(
+          title: const Text(
+            'ESP32-S3 Control Panel',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.color_lens_outlined,
+              color: Colors.white,
+            ), // Icon widget
+            onPressed: () {
+              // Add onPressed logic here if need
+            },
+          ),
+          backgroundColor: Colors.lightBlue,
+        ),
+
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
