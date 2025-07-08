@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'color_bloc.dart';
+import 'ui_blocks/color_bloc.dart';
 
 class IconPanel extends StatelessWidget {
   const IconPanel({super.key});

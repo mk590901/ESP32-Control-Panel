@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'color_bloc.dart';
+import 'ui_blocks/color_bloc.dart';
 import 'ui_blocks/app_bloc.dart';
 import 'ui_blocks/mqtt_bloc.dart';
 import 'utils.dart';

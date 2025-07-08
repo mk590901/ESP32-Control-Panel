@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'buttons_panel.dart';
-import 'color_bloc.dart';
+import 'ui_blocks/color_bloc.dart';
 import 'gui_adapter/service_adapter.dart';
 import 'home_page.dart';
 import 'icon_panel.dart';

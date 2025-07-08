@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:synchronized/synchronized.dart';
 
-import '../color_bloc.dart';
+import '../ui_blocks/color_bloc.dart';
 import '../color_model.dart';
 import '../ui_blocks/app_bloc.dart';
 // import '../ui_blocks/item_model.dart';
