@@ -67,6 +67,7 @@ EMQX: _server = 'broker.emqx.io'
   //static final String _server = 'broker.emqx.io';
   static final String _flutterClient = 'flutter_client_${const Uuid().v4()}';
   static final String _topic = 'hsm_v2/topic';
+  static final String _inp_topic = 'hsm_in/topic';
 
   final Queue<Map>	queue	= Queue<Map>();
   final List<String> deletedObjectsList = [];
@@ -129,13 +130,13 @@ EMQX: _server = 'broker.emqx.io'
 
     // Subscribe to topic
     if (client?.connectionStatus!.state == MqttConnectionState.connected) {
-      client?.subscribe(_topic, MqttQos.atLeastOnce);
+      client?.subscribe(/*_topic*/_inp_topic, MqttQos.atLeastOnce);
       client?.updates?.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final recMessage = c[0].payload as MqttPublishMessage;
         final payload = MqttPublishPayload.bytesToStringAsString(
             recMessage.payload.message);
-        String message = payload;
-        //print('Received message: $payload from topic: ${c[0].topic}');
+        //String message = payload;
+        print('Received message: $payload from topic: ${c[0].topic}');
         // if (!isDataFromDeletedObject(message)) {
         //   queue.add({'response': 'sync', 'value': message,});
         // }
@@ -258,6 +259,19 @@ EMQX: _server = 'broker.emqx.io'
         _deviceId = receivedData;
         print ('DEVICE->$_deviceId');
       }
+      if (command == 'color') {
+        String jsonString = receivedData;
+        final builder = MqttClientPayloadBuilder();
+        builder.addString(jsonString);
+        try {
+          client?.publishMessage(_topic, MqttQos.atMostOnce, builder.payload!);
+        }
+        catch (exception) {
+          print ('Publish - error');
+        }
+        print ('PUBLISH WAS DONE');
+      }
+
       // if (command == 'create_object') {
       //   Pair pair = add();
       //   String id = pair.uuid();
@@ -325,7 +339,7 @@ EMQX: _server = 'broker.emqx.io'
     if (!isConnected()) {
       return false;
     }
-    MqttSubscriptionStatus? status = client?.getSubscriptionsStatus(_topic);
+    MqttSubscriptionStatus? status = client?.getSubscriptionsStatus(/*_topic*/_inp_topic);
     if (status == null) {
       return false;
     }
