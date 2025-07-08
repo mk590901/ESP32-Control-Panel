@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:synchronized/synchronized.dart';
 
+import '../color_bloc.dart';
+import '../color_model.dart';
 import '../ui_blocks/app_bloc.dart';
 // import '../ui_blocks/item_model.dart';
 // import '../ui_blocks/items_bloc.dart';
@@ -17,6 +20,7 @@ class ServiceAdapter {
   late AppBloc? _appBloc;
   //late ItemsBloc? _itemsBloc;
   late MqttBloc? _mqttBloc;
+  late ColorBloc? _colorBloc;
 
   static int PERIOD = 1000;
   static int DELETE_DELAY = 4000;
@@ -155,6 +159,10 @@ class ServiceAdapter {
 
   void setMQTTBloc(MqttBloc? mqttBloc) {
     _mqttBloc = mqttBloc;
+  }
+
+  void setColorBloc(ColorBloc? colorBloc) {
+    _colorBloc = colorBloc;
   }
 
   void mqttConnect() {
@@ -354,5 +362,14 @@ class ServiceAdapter {
   void setProgress(bool progress) {
     _mqttBloc?.add(InProgressEvent(progress));
     print ('******* setProgress $progress ******* ${DateTime.now()}');
+  }
+
+  void setColor(String jsonString) {
+    ColorModel color = ColorModel.restoreFromJson(jsonString);
+// Convert to Flutter Color
+    Color flutterColor = color.toColor(); // Orange color
+    print ('******* setColor [${color.r},${color.g},${color.b}] *******');
+    _colorBloc?.add(ChangeColorEvent(flutterColor));
+
   }
 }

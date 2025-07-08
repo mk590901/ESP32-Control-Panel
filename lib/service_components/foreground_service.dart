@@ -137,6 +137,7 @@ EMQX: _server = 'broker.emqx.io'
             recMessage.payload.message);
         //String message = payload;
         print('Received message: $payload from topic: ${c[0].topic}');
+        queue.add({'response': 'color', 'value': payload,});
         // if (!isDataFromDeletedObject(message)) {
         //   queue.add({'response': 'sync', 'value': message,});
         // }

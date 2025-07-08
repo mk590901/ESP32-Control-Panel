@@ -85,6 +85,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         //   ServiceAdapter.instance()?.destroyObject(id);
         // }
 
+        if (command == 'color') {
+          String jsonString = data['value'] as String;
+          print ('------- COLOR [$jsonString] -------');
+          ServiceAdapter.instance()?.setColor(jsonString);
+        }
+
         // if (command == 'sync') {
         //   String jsonString = data['value'] as String;
         //   DataPacket targetDataPacket = DataPacket.empty().decode(jsonString);

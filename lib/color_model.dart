@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'dart:convert';
+
 class ColorModel {
   final int r;
   final int g;
@@ -24,5 +27,16 @@ class ColorModel {
       g: color['g'] as int,
       b: color['b'] as int,
     );
+  }
+
+  // Convert ColorModel to Flutter Color
+  Color toColor() {
+    return Color.fromRGBO(r, g, b, 1.0);
+  }
+
+  // Create ColorModel from JSON string
+  static ColorModel restoreFromJson(String jsonString) {
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
+    return ColorModel.fromJson(json);
   }
 }

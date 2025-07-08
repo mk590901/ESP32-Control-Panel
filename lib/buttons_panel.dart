@@ -41,7 +41,7 @@ class ButtonsPanel extends StatelessWidget {
               if (context.read<AppBloc>().state.isRunning) {
                 if (context.read<MqttBloc>().state.isConnected
                 &&  context.read<MqttBloc>().state.isSubscribed) {
-                  context.read<ColorBloc>().add(ChangeColorEvent(buttonColors[index]));
+                  context.read<ColorBloc>().add(ChangeEsp32ColorEvent(buttonColors[index]));
                 }
                 else {
                   showToast(context, "MQTT problems");
