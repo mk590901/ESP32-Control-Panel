@@ -1,23 +1,37 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mqtt_palette_esp32/ui_components/mqtt_panel.dart';
 
 import 'buttons_panel.dart';
 import 'color_bloc.dart';
 import 'gui_adapter/service_adapter.dart';
 import 'home_page.dart';
 import 'icon_panel.dart';
+import 'service_components/foreground_service.dart';
 import 'ui_blocks/app_bloc.dart';
 import 'ui_blocks/mqtt_bloc.dart';
 import 'ui_components/control_panel.dart';
 
 // The main app widget
-void main() {
+void main() async {
   ServiceAdapter.initInstance();
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await initializeForegroundService();
-  // await detectDeviceName();
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeForegroundService();
+  await detectDeviceName();
   runApp(PaletteApp());
+}
+
+Future<void> detectDeviceName() async {
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  if (Platform.isAndroid) {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    ServiceAdapter.instance()?.setDeviceName('${androidInfo.brand} ${androidInfo.model}');
+  } else if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    ServiceAdapter.instance()?.setDeviceName('${iosInfo.name} (${iosInfo.model})');
+  }
 }
 
 class PaletteApp extends StatelessWidget {
@@ -42,6 +56,7 @@ class PaletteApp extends StatelessWidget {
     );
   }
 }
+
 /*
 class PaletteApp extends StatelessWidget {
   const PaletteApp({super.key});
