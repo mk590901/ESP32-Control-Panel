@@ -30,6 +30,7 @@ class ControlPanel extends StatelessWidget {
                   ),
                 ],
               ),
+              const Divider(height: 4),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

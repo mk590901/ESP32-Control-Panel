@@ -16,7 +16,7 @@ class IconPanel extends StatelessWidget {
             child: Icon(
               Icons.brightness_1_outlined,
               color: state.iconColor,
-              size: 156,
+              size: 182,
             ),
           ),
         );

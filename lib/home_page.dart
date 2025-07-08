@@ -32,10 +32,15 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               const ControlPanel(),
+              const Divider(height: 4),
+              const SizedBox(height: 8),
               const MQTTPanel(),
-              SizedBox(height: 32),
+              const SizedBox(height: 8),
+              const Divider(height: 4),
+              const SizedBox(height: 16),
               ButtonsPanel(),
               SizedBox(height: 16),
+              const Divider(height: 4),
               IconPanel(),
             ],
           ),
