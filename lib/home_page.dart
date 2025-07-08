@@ -15,32 +15,32 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //return Scaffold(
     return PopScope(
-        canPop: false, // Disable the default behavior of the "back" button
-        onPopInvokedWithResult: (didPop, result) async {
-          if (didPop) return; // If pop has already been executed, do nothing
-          // Show the dialog box
-          final result = await showAppExitDialog(context);
+      canPop: false, // Disable the default behavior of the "back" button
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return; // If pop has already been executed, do nothing
+        // Show the dialog box
+        final result = await showAppExitDialog(context);
 
-          // Processing user selection
-          await reaction(result, context);
-          // For 'ignore' we do nothing, the dialog just closes
-        },
-        child: Scaffold(
-          appBar: AppBar(title: Text('Colorful Icons App')),
+        // Processing user selection
+        await reaction(result, context);
+        // For 'ignore' we do nothing, the dialog just closes
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text('Colorful Icons App')),
         body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const ControlPanel(),
-            const MQTTPanel(),
-            SizedBox(height: 32),
-            ButtonsPanel(),
-            SizedBox(height: 16),
-            IconPanel(),
-          ],
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const ControlPanel(),
+              const MQTTPanel(),
+              SizedBox(height: 32),
+              ButtonsPanel(),
+              SizedBox(height: 16),
+              IconPanel(),
+            ],
+          ),
         ),
       ),
-        ),
     );
   }
 
@@ -116,5 +116,4 @@ class HomePage extends StatelessWidget {
       await SystemNavigator.pop();
     }
   }
-
 }
