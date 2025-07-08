@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'color_bloc.dart';
+import 'ui_blocks/app_bloc.dart';
+import 'ui_blocks/mqtt_bloc.dart';
+import 'utils.dart';
 
 // Buttons Panel
 class ButtonsPanel extends StatelessWidget {
@@ -34,7 +37,19 @@ class ButtonsPanel extends StatelessWidget {
               backgroundColor: buttonColors[index],
             ),
             onPressed: () {
-              context.read<ColorBloc>().add(ChangeColorEvent(buttonColors[index]));
+              //context.read<ColorBloc>().add(ChangeColorEvent(buttonColors[index]));
+              if (context.read<AppBloc>().state.isRunning) {
+                if (context.read<MqttBloc>().state.isConnected
+                &&  context.read<MqttBloc>().state.isSubscribed) {
+                  context.read<ColorBloc>().add(ChangeColorEvent(buttonColors[index]));
+                }
+                else {
+                  showToast(context, "MQTT problems");
+                }
+              }
+              else {
+                showToast(context, "Service isn't run");
+              }
             },
             child: Container(),
           ),
