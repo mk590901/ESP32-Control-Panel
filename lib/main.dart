@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mqtt_palette_esp32/utils.dart';
 
 import 'ui_blocks/color_bloc.dart';
 import 'gui_adapter/service_adapter.dart';
@@ -32,10 +33,13 @@ Future<void> detectDeviceName() async {
 }
 
 class PaletteApp extends StatelessWidget {
-  const PaletteApp({super.key});
+  PaletteApp({super.key});
+
+  late BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AppBloc()),
@@ -53,34 +57,3 @@ class PaletteApp extends StatelessWidget {
     );
   }
 }
-
-/*
-class PaletteApp extends StatelessWidget {
-  const PaletteApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ColorBloc(),
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(title: Text('Colorful Icons App')),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                //const ControlPanel(),
-                //const MQTTPanel(),
-                ButtonsPanel(),
-                SizedBox(height: 16),
-                IconPanel(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
- */

@@ -57,18 +57,14 @@ class ControlPanel extends StatelessWidget {
                         if (context.read<MqttBloc>().state.isConnected
                         &&  context.read<MqttBloc>().state.isSubscribed) {
                           ServiceAdapter.instance()?.stopEsp32();
+                          showToast(context, "The application running on the ESP32-S3 has been terminated and cannot be used any further. Please restart it with jag to resume interaction.");
                         }
                         else {
                           showToast(context, "MQTT problems");
                         }
-                        // context.read<AppBloc>().add(StopService());
-                        // ServiceAdapter.instance()?.stopTimer();
-                        // ServiceAdapter.instance()?.mqttUnsubscribe(); //  via MqttBloc
-                        // ServiceAdapter.instance()?.mqttDisconnect();
                       }
                       else {
                         showToast(context, "Service isn't run");
-                      //  context.read<AppBloc>().add(StartService());
                       }
                     },
                     child: Text('Stop ESP32-S3', ),
