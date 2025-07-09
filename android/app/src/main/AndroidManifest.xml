@@ -8,9 +8,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:label="mqtt esp32 service"
+        android:label="Esp32 MQTT Service"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/chip_256x256">
         <activity
             android:name=".MainActivity"
             android:exported="true"
