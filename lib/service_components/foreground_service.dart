@@ -7,6 +7,8 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:math';
 
+import '../utils.dart';
+
 //import '../data_collection/data_holder.dart';
 // import '../data_collection/message_handler.dart';
 // import '../data_collection/pair_data_object.dart';
@@ -130,17 +132,15 @@ EMQX: _server = 'broker.emqx.io'
 
     // Subscribe to topic
     if (client?.connectionStatus!.state == MqttConnectionState.connected) {
-      client?.subscribe(/*_topic*/_inp_topic, MqttQos.atLeastOnce);
+      client?.subscribe(_inp_topic, MqttQos.atLeastOnce);
       client?.updates?.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final recMessage = c[0].payload as MqttPublishMessage;
         final payload = MqttPublishPayload.bytesToStringAsString(
             recMessage.payload.message);
-        //String message = payload;
         print('Received message: $payload from topic: ${c[0].topic}');
-        queue.add({'response': 'color', 'value': payload,});
-        // if (!isDataFromDeletedObject(message)) {
-        //   queue.add({'response': 'sync', 'value': message,});
-        // }
+        String messageType = detectMessageType(payload);
+        print ('messageType->$messageType');
+        queue.add({'response': messageType, 'value': payload,});
       });
     }
   }

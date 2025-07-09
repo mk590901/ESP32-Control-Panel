@@ -372,7 +372,7 @@ class ServiceAdapter {
     ColorModel color = ColorModel.restoreFromJson(jsonString);
 // Convert to Flutter Color
     Color flutterColor = color.toColor(); // Orange color
-    print ('******* setColor [${color.r},${color.g},${color.b}] *******');
+    //print ('******* setColor [${color.r},${color.g},${color.b}] *******');
     _colorBloc?.add(ChangeColorEvent(flutterColor));
 
   }
@@ -382,4 +382,10 @@ class ServiceAdapter {
     String jsonString = jsonEncode(command.toJson());
     FlutterForegroundTask.sendData({'command': 'stop', 'data': jsonString});
   }
+
+  void executeCommand(String jsonString) {
+    Command command = Command.fromJsonString(jsonString);
+    print ('executeCommand->[${command.cmd}]');
+  }
+
 }

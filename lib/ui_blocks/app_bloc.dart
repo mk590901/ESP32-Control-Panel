@@ -79,62 +79,45 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           add(UpdateData(counter));
         }
 
-        // if (command == 'destroy') {
-        //   String id = data['value'] as String;
-        //   print ('******* DESTROY OBJECT [$id] *******');
-        //   ServiceAdapter.instance()?.destroyObject(id);
-        // }
-
         if (command == 'color') {
           String jsonString = data['value'] as String;
           print ('------- COLOR [$jsonString] -------');
           ServiceAdapter.instance()?.setColor(jsonString);
         }
 
-        // if (command == 'sync') {
-        //   String jsonString = data['value'] as String;
-        //   DataPacket targetDataPacket = DataPacket.empty().decode(jsonString);
-        //   String id = targetDataPacket.sensorId;
-        //   String name = targetDataPacket.sensorName;
-        //   int length =  targetDataPacket.seriesLength;
-        //   List<double> rawData = targetDataPacket.rawData;
-        //   print ('listener.command->sync [$id]:[$name]:[$length]->(${rawData.length})');
-        //   ServiceAdapter.instance()?.createGuiItem(id, name, length);
-        //   ServiceAdapter.instance()?.updateRawData(id, rawData);
-        // }
+        if (command == 'cmd') {
+          String jsonString = data['value'] as String;
+          print ('------- CMD [$jsonString] -------');
+          ServiceAdapter.instance()?.executeCommand(jsonString);
+        }
 
         if (command == 'Connected') {
           String value = data['value'] as String;
           print ('AppBloc.Connected->[$value]');
           ServiceAdapter.instance()?.mqttConnect();
-          //@ServiceAdapter.instance()?.mqttSuccess(command, value);
         }
 
         if (command == 'Disconnected') {
           String value = data['value'] as String;
           print ('AppBloc.Disconnected->[$value]');
           ServiceAdapter.instance()?.mqttDisconnect();
-          //@ServiceAdapter.instance()?.mqttSuccess(command, value);
         }
 
         if (command == 'Subscribed') {
           String value = data['value'] as String;
           print ('AppBloc.Subscribed->[$value]');
           ServiceAdapter.instance()?.mqttSubscribe();
-          //@ServiceAdapter.instance()?.mqttSuccess(command, value);
         }
 
         if (command == 'Unsubscribed') {
           String value = data['value'] as String;
           print ('AppBloc.Unsubscribed->[$value]');
           ServiceAdapter.instance()?.mqttUnsubscribe();
-          //@ServiceAdapter.instance()?.mqttSuccess(command, value);
         }
 
         if (command == 'Publish') {
           String value = data['value'] as String;
           print ('AppBloc.Publish->[$value]');
-          //@ServiceAdapter.instance()?.mqttSuccess(command, value);
         }
 
         if (command == 'mqtt') {

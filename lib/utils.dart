@@ -20,21 +20,22 @@ void showToast(BuildContext context, String text) {
 String composeColorJsonString(Color color) {
   List<int> list = colors2Rgb(color);
   final ColorModel colorModel = ColorModel(r: list[0], g: list[1], b: list[2]);
-  //String jsonString = jsonEncode(list);
   String jsonString = jsonEncode(colorModel.toJson());
   print ('composeColorJsonString->$jsonString');
-  // try {
-  //   // Parse JSON string to a Map
-  //   final jsonMap = jsonDecode(jsonString) as Map<String, dynamic>;
-  //
-  //   // Check if the key "color" exists
-  //   bool hasColor = jsonMap.containsKey('color');
-  //   print('Contains "color": $hasColor'); // Output: Contains "color": true
-  // } catch (e) {
-  //   print('Invalid JSON: $e');
-  // }
-
   return jsonString;
+}
+
+String detectMessageType(String jsonString) {
+  String result = "";
+  final map = jsonDecode(jsonString) as Map<String, dynamic>;
+  if (map.containsKey('cmd')) {
+    result = 'cmd';
+  }
+  else
+  if (map.containsKey('color'))  {
+    result = 'color';
+  }
+  return result;
 }
 
 List<int> colors2Rgb(Color color) {

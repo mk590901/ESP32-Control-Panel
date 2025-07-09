@@ -27,4 +27,5 @@ class Command {
     final jsonMap = jsonDecode(jsonString) as Map<String, dynamic>;
     return Command.fromJson(jsonMap);
   }
+
 }

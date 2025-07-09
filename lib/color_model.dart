@@ -39,4 +39,5 @@ class ColorModel {
     final json = jsonDecode(jsonString) as Map<String, dynamic>;
     return ColorModel.fromJson(json);
   }
+
 }
