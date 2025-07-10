@@ -6,7 +6,6 @@ import '../gui_adapter/service_adapter.dart';
 import '../ui_blocks/app_bloc.dart';
 import '../ui_blocks/mqtt_bloc.dart';
 import '../utils.dart';
-//import '../ui_blocks/items_bloc.dart';
 
 class ControlPanel extends StatelessWidget {
   const ControlPanel({super.key});
@@ -39,7 +38,6 @@ class ControlPanel extends StatelessWidget {
                     onPressed: () {
                       if (state.isRunning) {
                         context.read<AppBloc>().add(StopService());
-                        ServiceAdapter.instance()?.stopTimer();
                         ServiceAdapter.instance()?.mqttUnsubscribe(); //  via MqttBloc
                         ServiceAdapter.instance()?.mqttDisconnect();
                       }
