@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mqtt_palette_esp32/utils.dart';
 
 import 'ui_blocks/color_bloc.dart';
 import 'gui_adapter/service_adapter.dart';

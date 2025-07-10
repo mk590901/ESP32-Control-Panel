@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //return Scaffold(
     return PopScope(
       canPop: false, // Disable the default behavior of the "back" button
       onPopInvokedWithResult: (didPop, result) async {
