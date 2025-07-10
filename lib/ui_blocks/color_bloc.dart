@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 
-import '../color_model.dart';
 import '../gui_adapter/service_adapter.dart';
 import '../utils.dart';
 
