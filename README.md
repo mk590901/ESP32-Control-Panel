@@ -1,4 +1,4 @@
-# mqtt_palette_esp32
+# mqtt palette esp32
 
 A new Flutter project.
 
