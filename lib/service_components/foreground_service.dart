@@ -5,16 +5,8 @@ import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:math';
 
 import '../utils.dart';
-
-//import '../data_collection/data_holder.dart';
-// import '../data_collection/message_handler.dart';
-// import '../data_collection/pair_data_object.dart';
-// import '../data_packet.dart';
-// import '../ecg_simulator/ecg_simulator.dart';
-// import '../gui_adapter/simulator_wrapper.dart';
 
 // Initialize the foreground service
 Future<void> initializeForegroundService() async {
@@ -44,8 +36,6 @@ Future<void> initializeForegroundService() async {
 
 // Task handler for the foreground service
 class ServiceTaskHandler extends TaskHandler {
-
-  //final Map<String,SimulatorWrapper> container = {};
 
   int counter = 0;
 
@@ -171,7 +161,6 @@ EMQX: _server = 'broker.emqx.io'
   void onSubscribed(String topic) {
     print('******* onSubscribed to topic: $topic *******');
     queue.add({'response': 'Subscribed', 'value': 'Subscribed to topic: $topic'});
-    //queue.add({'response': 'progress', 'value': false });
   }
 
   void onUnsubscribed(String? topic) {
@@ -213,16 +202,6 @@ EMQX: _server = 'broker.emqx.io'
     if (isConnected() && isSubscribed()) {
       queue.add({'response': 'progress', 'value': false });
     }
-
-    // if (size() == 0) {
-    //   print ('size = 0');
-    //   return;
-    // }
-
-    // container.forEach((key, value) {
-    //   createSimulatorIfNeed(key);
-    // });
-
   }
 
   @override
@@ -272,69 +251,11 @@ EMQX: _server = 'broker.emqx.io'
         }
         print ('PUBLISH WAS DONE');
       }
-
-      // if (command == 'create_object') {
-      //   Pair pair = add();
-      //   String id = pair.uuid();
-      //   int length = pair.counter();
-      //   // Send data to app
-      //   print ('Send data to app -> [created] [$id][$length]');
-      // }
-      // else
-      // if (command == 'delete_object') {
-      //   String id = receivedData;
-      //   print ('delete_object -> [$id]');
-      //   remove(id);
-      // }
-      // else
-      // if (command == 'mark_object_unused') {
-      //   String id = receivedData;
-      //   print ('mark_object_unused -> [$id]');
-      //   markUnused(id);
-      // }
-      // else
-      // if (command == 'mark_object_used') {
-      //   String id = receivedData;
-      //   print ('mark_object_used -> [$id]');
-      //   markUsed(id);
-      // }
-    } else {
+    }
+    else {
       print('Invalid data format: $data');
     }
   }
-////////////////////////////////////////////////////////////////////////////////
-//   int size() {
-//     return container.length;
-//   }
-//
-//   Pair add() {
-//     SimulatorWrapper wrapper = SimulatorWrapper();
-//     container[wrapper.id()] = wrapper;
-//     return Pair(wrapper.id(),wrapper.length());
-//   }
-//
-//   void remove(String? id) {
-//     if (container.containsKey(id)) {
-//       container.remove(id);
-//     }
-//     print ('remove, size->[${size()}]');
-//     deletedObjectsList.add(id?? '');
-//
-//   }
-//
-//   void markUnused(String? id,) {
-//     if (container.containsKey(id)) {
-//       container[id]?.setItemPresence(false);
-//     }
-//     print ('markUnused, size->[${size()}]');
-//   }
-//
-//   void markUsed(String? id,) {
-//     if (container.containsKey(id)) {
-//       container[id]?.setItemPresence(true);
-//     }
-//     print ('markUsed, size->[${size()}]');
-//   }
 
   bool isSubscribed() {
     if (!isConnected()) {
@@ -351,60 +272,6 @@ EMQX: _server = 'broker.emqx.io'
   bool isConnected() {
     return (client?.connectionStatus?.state == MqttConnectionState.connected) ? true : false;
   }
-
-  void createSimulatorIfNeed(String key/*, int ms*/) {
-    // SimulatorWrapper? wrapper = get(key);
-    // if (wrapper == null) {
-    //   return;
-    // }
-    //
-    // if (wrapper.presence()) {
-    //   wrapper.setItemPresence(true);
-    // }
-    //
-    // if (client?.connectionStatus?.state == MqttConnectionState.disconnecting
-    // ||  client?.connectionStatus?.state == MqttConnectionState.disconnected) {
-    //   print("Client isn't connected");
-    //   return;
-    // }
-    //
-    // if (!isSubscribed()) {
-    //   print("Client isn't subscribed");
-    //   return;
-    // }
-    //
-    // List<double> rawData = wrapper.generateRawData(); //  Generate ECG signal
-    // DataPacket sourceDataPacket = DataPacket(wrapper.id(), _deviceId, wrapper.length(), rawData);
-    // String jsonString = sourceDataPacket.encode();
-    //
-    // final builder = MqttClientPayloadBuilder();
-    // builder.addString(jsonString);
-    // try {
-    //   client?.publishMessage(_topic, MqttQos.atMostOnce, builder.payload!);
-    // }
-    // catch (exception) {
-    //   print ('Publish - error');
-    // }
-  }
-
-  // SimulatorWrapper? get(String? id) {
-  //   SimulatorWrapper? result;
-  //   if (container.containsKey(id)) {
-  //     result = container[id];
-  //   }
-  //   return result;
-  // }
-
-  // bool isDataFromDeletedObject(String dataPacket) {
-  //   DataPacket targetDataPacket = DataPacket.empty().decode(dataPacket);
-  //   String id = targetDataPacket.sensorId;
-  //   bool result = false;
-  //   if (deletedObjectsList.contains(id)) {
-  //     result = true;
-  //   }
-  //   return result;
-  // }
-
 }
 
 // Entry point for the foreground task
