@@ -14,7 +14,7 @@ In addition to the service __control panel__ and the __mqtt indicator__ panel, t
 
 More details about the command system used and they structure are in the README.md file of the https://github.com/mk590901/TOIT-MQTT-Service repository.
 
-## Movies.
+## Movies
 
 Below are two movies:
 
