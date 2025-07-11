@@ -10,7 +10,7 @@ In fact, all control of the controller comes down to changing the color of the _
 
 __GUI__ includes control panel and the mqtt indicator panel. The controller panel is supplemented with a __Stop ESP32-S3__ button, pressing which leads to the end of the application on the controller.
 
-In addition to the service __control panel__ and the __mqtt indicator__ panel, the GUI is supplemented with a panel of __buttons__, by pressing which you can change the color of the __RGB LED__ of __ESP32-S3__ controller. At the bottom of the screen there is an __indicator__ of the selected color. It changes when the application receives asknowledge from the controller.
+In addition to the service __control panel__ and the __mqtt indicator__ panel, the __GUI__ is supplemented with a panel of __buttons__, by pressing which you can change the color of the __RGB LED__ of __ESP32-S3__ controller. At the bottom of the screen there is an __indicator__ of the selected color. It changes when the application receives asknowledge from the controller.
 
 More details about the command system used and they structure are in the README.md file of the https://github.com/mk590901/TOIT-MQTT-Service repository.
 
