@@ -1,6 +1,6 @@
 # ESP32-S3 Control Panel
 
-Below is an application in which the previously implemented (https://github.com/mk590901/ECG-MQTT-SERVICE) __mqtt service__ is used as a app core for the control panel for the microcontroller on the __ESP32-S3-WROOM__ board.
+Below is an application in which the previously implemented (https://github.com/mk590901/ECG-MQTT-SERVICE) __mqtt service__ is used as a __app core__ for the control panel for the microcontroller on the __ESP32-S3-WROOM__ board.
 
 ## Brief service's description
 
