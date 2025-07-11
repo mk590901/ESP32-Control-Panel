@@ -20,5 +20,12 @@ Below are two movies:
 
 > Flutter application via that changes colors on the board of microcontroller. You need to press the __Start__ button and after a successful connection to the broker (two green icons - a sign of a successful connection and subscription) you can select a color for the RGB LED. With a slight delay, the color of the ring at the bottom of the screen changes because the reverse passage of the command from the __ESP32-S3__ to the application take anu time. You can also interrupt the application on the __ESP32-S3__ by pressing the __Stop ESP32-S3__ button. If you want to continue, then load the application again to the chip using the __jag__ command.
 
+https://github.com/user-attachments/assets/204586d2-98a7-4bbd-803a-4a50d9745073
+
 > Live lideo of the  reflection of interaction application 1) with the __ESP32-S3-WROOM__ board.
+
+https://github.com/user-attachments/assets/21566884-27eb-49b7-a5bc-776038f8a3ae
+
+
+
 
