@@ -94,6 +94,12 @@ class ServiceAdapter {
     FlutterForegroundTask.sendData({'command': 'stop', 'data': jsonString});
   }
 
+  void breakEsp32() {
+    final Command command = Command(cmd: "break");
+    String jsonString = jsonEncode(command.toJson());
+    FlutterForegroundTask.sendData({'command': 'break', 'data': jsonString});
+  }
+
   void executeCommand(String jsonString) {
     Command command = Command.fromJsonString(jsonString);
     print ('executeCommand->[${command.cmd}]');

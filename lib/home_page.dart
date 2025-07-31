@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const ControlPanel(),
+              /*const*/ ControlPanel(),
               const Divider(height: 4),
               const SizedBox(height: 8),
               const MQTTPanel(),
