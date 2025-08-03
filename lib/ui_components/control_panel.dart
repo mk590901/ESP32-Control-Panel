@@ -85,30 +85,28 @@ class ControlPanel extends StatelessWidget {
                     child: Text('Stop ESP32-S3', ),
                   ),
 
-                  ElevatedButton(
-                    onPressed: () {
-                      if (state.isRunning) {
-                        if (context.read<MqttBloc>().state.isConnected
-                            &&  context.read<MqttBloc>().state.isSubscribed) {
-                          //ServiceAdapter.instance()?.breakEsp32();
-                          //showToast(context, "The MQTT Client running on the ESP32-S3 has been closed.");
-                          if (timer == null) {
-                            startTimer(context);
-                          }
-                          else {
-                            stopTimer();
-                          }
-                        }
-                        else {
-                          showToast(context, "MQTT problems");
-                        }
-                      }
-                      else {
-                        showToast(context, "Service isn't run");
-                      }
-                    },
-                    child: Text('X', ),
-                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     if (state.isRunning) {
+                  //       if (context.read<MqttBloc>().state.isConnected
+                  //           &&  context.read<MqttBloc>().state.isSubscribed) {
+                  //         if (timer == null) {
+                  //           startTimer(context);
+                  //         }
+                  //         else {
+                  //           stopTimer();
+                  //         }
+                  //       }
+                  //       else {
+                  //         showToast(context, "MQTT problems");
+                  //       }
+                  //     }
+                  //     else {
+                  //       showToast(context, "Service isn't run");
+                  //     }
+                  //   },
+                  //   child: Text('X', ),
+                  // ),
 
                   //@Text('# ${state.counter}'),
 
